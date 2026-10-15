@@ -157,6 +157,6 @@
 > 2. We demonstrated that redundancy reduction is indispensable: removing it drops accuracy by 17.72 percentage points.
 > 3. The tested static-threshold configuration produced rank-0 collapse, showing that this particular thresholding strategy failed to maintain a useful representation, and continuous redundancy reduction proved critical in this setup.
 > 4. We verified that Barlow Twins is feasible for local academic research, completing 50 pretraining epochs in 120.2 minutes with 537 MB peak VRAM.
-> 5. All code, unit tests, Colab notebooks, and IEEE report deliverables are complete, verified, and reproducible.
+> 5. All code, unit tests, Colab notebooks, and IEEE report deliverables are complete, verified, and publicly available at https://github.com/khageshranjan23-pixel/dl070-barlow-twins-cifar10-24cs2021.
 > 
 > Thank you for your time. I welcome any questions from the panel."

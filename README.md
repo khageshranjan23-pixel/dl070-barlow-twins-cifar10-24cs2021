@@ -7,6 +7,7 @@
 **Laboratory / Course:** DL-070 Deep Learning Laboratory  
 **Assignment ID:** DL-070  
 **Date:** October 2026  
+**GitHub Repository:** [https://github.com/khageshranjan23-pixel/dl070-barlow-twins-cifar10-24cs2021](https://github.com/khageshranjan23-pixel/dl070-barlow-twins-cifar10-24cs2021)  
 
 ---
 

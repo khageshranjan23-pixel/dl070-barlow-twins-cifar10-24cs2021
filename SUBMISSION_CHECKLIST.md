@@ -7,6 +7,7 @@
 **Course:** DL-070 Deep Learning Laboratory  
 **Topic:** Reduced-Scale Reproduction and Ablation Study of Barlow Twins on CIFAR-10  
 **Submission Package:** `DL070_Barlow_Twins_Submission/` and `DL070_Barlow_Twins_Submission.zip`  
+**GitHub Repository:** [https://github.com/khageshranjan23-pixel/dl070-barlow-twins-cifar10-24cs2021](https://github.com/khageshranjan23-pixel/dl070-barlow-twins-cifar10-24cs2021) (Public)  
 **Date:** October 2026  
 **Status:** **100% COMPLETE & VERIFIED**
 
