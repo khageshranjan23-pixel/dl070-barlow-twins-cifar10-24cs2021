@@ -343,7 +343,7 @@ def barlow_loss_fixed(z_a: torch.Tensor, z_b: torch.Tensor, lambd: float = 0.005
     Static hinge threshold control:
     Applies constant cutoff T = threshold^2 to off-diagonal correlations:
       rr_loss = sum_{i != j} ReLU(C_ij^2 - T)
-    Correlations |C_ij| <= threshold receive zero gradient, inducing rank-0 collapse.
+    Correlations |C_ij| <= threshold receive zero gradient.
     """
     C = compute_cross_correlation(z_a, z_b)
     on_diag = (C.diagonal().add(-1.0)).pow(2).sum()
@@ -426,6 +426,7 @@ def pretrain(args: argparse.Namespace) -> None:
         num_workers = args.workers,
         batch_size  = args.batch_size,
         seed        = args.seed,
+        include_test = False,
     )
 
     model = BarlowEncoder(dim=args.dim).to(device)

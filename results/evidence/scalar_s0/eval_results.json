@@ -1,0 +1,22 @@
+{
+  "run_dir": "runs/scalar_s0",
+  "method": "scalar",
+  "seed": 0,
+  "epochs": 50,
+  "dim": 512,
+  "probe_lr": 0.01,
+  "val_acc": 72.34,
+  "test_acc": 71.15,
+  "knn_val_acc": 69.18,
+  "knn_test_acc": 67.5,
+  "all_lr_results": {
+    "0.01": 72.34,
+    "0.05": 71.68,
+    "0.1": 68.2,
+    "0.3": 61.52
+  },
+  "feature_rank": 505,
+  "feature_mean_std": 0.34853,
+  "feat_time_s": 18.41,
+  "probe_time_s": 81.79
+}

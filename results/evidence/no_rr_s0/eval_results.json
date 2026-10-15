@@ -1,0 +1,22 @@
+{
+  "run_dir": "runs/no_rr_s0",
+  "method": "no_rr",
+  "seed": 0,
+  "epochs": 50,
+  "dim": 512,
+  "probe_lr": 0.01,
+  "val_acc": 57.42,
+  "test_acc": 57.12,
+  "knn_val_acc": 52.54,
+  "knn_test_acc": 51.98,
+  "all_lr_results": {
+    "0.01": 57.42,
+    "0.05": 49.38,
+    "0.1": 37.28,
+    "0.3": 43.9
+  },
+  "feature_rank": 508,
+  "feature_mean_std": 0.28394,
+  "feat_time_s": 19.0,
+  "probe_time_s": 86.98
+}

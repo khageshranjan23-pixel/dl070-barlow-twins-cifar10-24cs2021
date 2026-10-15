@@ -1,0 +1,68 @@
+{
+  "project": "Reduced-Scale Reproduction and Ablation Study of Barlow Twins on CIFAR-10",
+  "hardware": "NVIDIA GeForce RTX 5050 Laptop GPU (8.55 GB VRAM)",
+  "cuda": "12.8",
+  "torch": "2.11.0+cu128",
+  "runs": {
+    "bt_s0": {
+      "method": "bt",
+      "seed": 0,
+      "code_hash": "8c273e7afb33",
+      "manifest": "results/evidence/bt_s0/manifest.json",
+      "eval_results": "results/evidence/bt_s0/eval_results.json",
+      "test_acc": 74.84,
+      "val_acc": 75.68,
+      "knn_test_acc": 72.41,
+      "knn_val_acc": 73.06,
+      "feature_rank": 506
+    },
+    "no_rr_s0": {
+      "method": "no_rr",
+      "seed": 0,
+      "code_hash": "8c273e7afb33",
+      "manifest": "results/evidence/no_rr_s0/manifest.json",
+      "eval_results": "results/evidence/no_rr_s0/eval_results.json",
+      "test_acc": 57.12,
+      "val_acc": 57.42,
+      "knn_test_acc": 51.98,
+      "knn_val_acc": 52.54,
+      "feature_rank": 508
+    },
+    "fixed_s0": {
+      "method": "fixed",
+      "seed": 0,
+      "code_hash": "8c273e7afb33",
+      "manifest": "results/evidence/fixed_s0/manifest.json",
+      "eval_results": "results/evidence/fixed_s0/eval_results.json",
+      "test_acc": 10.0,
+      "val_acc": 10.28,
+      "knn_test_acc": null,
+      "knn_val_acc": null,
+      "feature_rank": 0
+    },
+    "scalar_s0": {
+      "method": "scalar",
+      "seed": 0,
+      "code_hash": "8c273e7afb33",
+      "manifest": "results/evidence/scalar_s0/manifest.json",
+      "eval_results": "results/evidence/scalar_s0/eval_results.json",
+      "test_acc": 71.15,
+      "val_acc": 72.34,
+      "knn_test_acc": 67.5,
+      "knn_val_acc": 69.18,
+      "feature_rank": 505
+    },
+    "noise_s0": {
+      "method": "noise",
+      "seed": 0,
+      "code_hash": "8c273e7afb33",
+      "manifest": "results/evidence/noise_s0/manifest.json",
+      "eval_results": "results/evidence/noise_s0/eval_results.json",
+      "test_acc": 72.69,
+      "val_acc": 73.4,
+      "knn_test_acc": 70.75,
+      "knn_val_acc": 71.08,
+      "feature_rank": 508
+    }
+  }
+}

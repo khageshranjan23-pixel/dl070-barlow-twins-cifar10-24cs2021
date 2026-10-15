@@ -1,0 +1,32 @@
+{
+  "status": "complete",
+  "args": {
+    "command": "train",
+    "method": "fixed",
+    "device": "cuda",
+    "amp": true,
+    "epochs": 50,
+    "batch_size": 64,
+    "dim": 512,
+    "lr": 0.05,
+    "lambd": 0.0051,
+    "beta": 1.0,
+    "floor": 0.1,
+    "seed": 0,
+    "subset": -1,
+    "workers": 0,
+    "data": "data",
+    "out": "runs/fixed_s0",
+    "no_color": false
+  },
+  "code_hash": "8c273e7afb33",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "python": "3.11.17 | packaged by Anaconda, Inc. | (main, Oct  1 2026, 20:16:54) [MSC v.1942 64 bit (AMD64)]",
+  "pretrain_seconds": 4581.24,
+  "final_loss": 0.0,
+  "ckpt_hash": "eb8bdc524efa",
+  "encoder_hash": "73d84e32efe3",
+  "skipped_amp_steps": 35139
+}

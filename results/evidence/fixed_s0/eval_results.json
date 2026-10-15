@@ -1,0 +1,22 @@
+{
+  "run_dir": "runs/fixed_s0",
+  "method": "fixed",
+  "seed": 0,
+  "epochs": 50,
+  "dim": 512,
+  "probe_lr": 0.01,
+  "val_acc": 10.28,
+  "test_acc": 10.0,
+  "knn_val_acc": null,
+  "knn_test_acc": null,
+  "all_lr_results": {
+    "0.01": 10.28,
+    "0.05": 10.28,
+    "0.1": 10.28,
+    "0.3": 10.28
+  },
+  "feature_rank": 0,
+  "feature_mean_std": 0.0,
+  "feat_time_s": 18.69,
+  "probe_time_s": 83.57
+}

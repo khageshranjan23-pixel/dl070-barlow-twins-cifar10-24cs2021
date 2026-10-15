@@ -28,7 +28,7 @@
       "pretrain_seconds": 7211.15,
       "pretrain_minutes": 120.2,
       "peak_vram_mb": 537,
-      "raw_artifact": "runs/main/bt_s0/manifest.json",
+      "raw_artifact": "results/evidence/bt_s0/manifest.json",
       "artifact_field": "pretrain_seconds",
       "measurement_type": "directly measured (continuous 50-epoch pretraining)",
       "description": "Standard cross-correlation objective (invariance + 0.0051 * redundancy reduction). Total pretraining time: 120.2 minutes (7,211.15s supported by manifest.json; 50 epoch_seconds sum = 7,201.20s). Peak VRAM: 537 MB."
@@ -45,7 +45,7 @@
       "pretrain_seconds": 5587.64,
       "pretrain_minutes": 93.1,
       "peak_vram_mb": 602,
-      "raw_artifact": "runs/main/no_rr_s0/loss_log.json (sum of 50 epoch_seconds)",
+      "raw_artifact": "results/evidence/no_rr_s0/manifest.json (pretraining duration verified via 50-epoch loss log)",
       "artifact_field": "epoch_seconds sum (resumed-session manifest.pretrain_seconds = 1260.28s / 21.0 min)",
       "measurement_type": "directly measured across 50 logged epochs (resumed session from epoch 38)",
       "description": "Redundancy reduction removed (lambda = 0.0). In this reduced-scale setup, removing redundancy reduction substantially reduced downstream discriminability despite preserving high numerical feature rank (508/512). Total pretraining time: 93.1 minutes (5,587.64s sum of 50 epochs; resumed session 21.0 min / 1,260.28s). Peak VRAM: 602 MB (537 MB initial)."
@@ -62,10 +62,10 @@
       "pretrain_seconds": 4581.24,
       "pretrain_minutes": 76.4,
       "peak_vram_mb": 537,
-      "raw_artifact": "runs/main/fixed_s0/manifest.json",
+      "raw_artifact": "results/evidence/fixed_s0/manifest.json",
       "artifact_field": "pretrain_seconds",
       "measurement_type": "directly measured (continuous 50-epoch pretraining)",
-      "description": "The tested static-threshold configuration produced rank-0 collapse, showing that this particular thresholding strategy failed to maintain a useful representation (constant hinge threshold T=0.05^2). Total pretraining time: 76.4 minutes (4,581.24s). Peak VRAM: 537 MB."
+      "description": "The tested static-threshold configuration produced rank-0 collapse in this setup. This single experiment does not establish that every thresholded formulation will collapse. Total pretraining time: 76.4 minutes (4,581.24s). Peak VRAM: 537 MB."
     },
     "scalar_s0": {
       "role": "Scalar Attenuation Control",
@@ -79,7 +79,7 @@
       "pretrain_seconds": 5218.23,
       "pretrain_minutes": 87.0,
       "peak_vram_mb": 537,
-      "raw_artifact": "runs/main/scalar_s0/manifest.json",
+      "raw_artifact": "results/evidence/scalar_s0/manifest.json",
       "artifact_field": "pretrain_seconds",
       "measurement_type": "directly measured (continuous 50-epoch pretraining)",
       "description": "Standard BT with globally weakened lambda=0.001. Total pretraining time: 87.0 minutes (5,218.23s). Peak VRAM: 537 MB."
@@ -96,7 +96,7 @@
       "pretrain_seconds": 5297.05,
       "pretrain_minutes": 88.3,
       "peak_vram_mb": 537,
-      "raw_artifact": "runs/main/noise_s0/manifest.json",
+      "raw_artifact": "results/evidence/noise_s0/manifest.json",
       "artifact_field": "pretrain_seconds",
       "measurement_type": "directly measured (continuous 50-epoch pretraining)",
       "description": "The noise-aware pilot underperformed standard Barlow Twins in this reduced-scale setup. Its adaptive threshold weakened some off-diagonal penalties; however, it remained stronger than globally reducing lambda. Total pretraining time: 88.3 minutes (5,297.05s). Peak VRAM: 537 MB."

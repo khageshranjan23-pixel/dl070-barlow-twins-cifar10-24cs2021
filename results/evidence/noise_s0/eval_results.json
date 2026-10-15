@@ -1,0 +1,22 @@
+{
+  "run_dir": "runs/noise_s0",
+  "method": "noise",
+  "seed": 0,
+  "epochs": 50,
+  "dim": 512,
+  "probe_lr": 0.01,
+  "val_acc": 73.4,
+  "test_acc": 72.69,
+  "knn_val_acc": 71.08,
+  "knn_test_acc": 70.75,
+  "all_lr_results": {
+    "0.01": 73.4,
+    "0.05": 73.32,
+    "0.1": 70.12,
+    "0.3": 57.72
+  },
+  "feature_rank": 508,
+  "feature_mean_std": 0.41994,
+  "feat_time_s": 18.14,
+  "probe_time_s": 82.54
+}
