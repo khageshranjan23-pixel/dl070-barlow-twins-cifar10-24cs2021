@@ -150,10 +150,11 @@ def build_cifar10(data_dir: str = "data",
                   num_workers: int = 0,
                   batch_size: int = 64,
                   seed: int = 0,
-                  include_test: bool = True):
+                  include_test: bool = True,
+                  eval_mode: bool = False):
     """
     Construct CIFAR-10 loaders:
-    - Pretraining train split: 45,000 images (TwoCropsTransform)
+    - Pretraining train split: 45,000 images (TwoCropsTransform if eval_mode=False, else eval_transform)
     - Evaluation val split:     5,000 images (Single standard transform)
     - Evaluation test split:   10,000 images (Single standard transform, optional)
     """
@@ -175,8 +176,10 @@ def build_cifar10(data_dir: str = "data",
     if subset > 0:
         train_indices = train_indices[:subset]
 
+    train_transform = eval_transform if eval_mode else TwoCropsTransform(color_jitter=color_jitter)
+
     train_ds = torchvision.datasets.CIFAR10(root=data_dir, train=True, download=False,
-                                           transform=TwoCropsTransform(color_jitter=color_jitter))
+                                           transform=train_transform)
     val_ds   = torchvision.datasets.CIFAR10(root=data_dir, train=True, download=False,
                                            transform=eval_transform)
 
@@ -184,8 +187,8 @@ def build_cifar10(data_dir: str = "data",
     val_subset   = Subset(val_ds, val_indices)
 
     train_loader = DataLoader(
-        train_subset, batch_size=batch_size, shuffle=True,
-        num_workers=num_workers, pin_memory=True, drop_last=True
+        train_subset, batch_size=batch_size, shuffle=(not eval_mode),
+        num_workers=num_workers, pin_memory=True, drop_last=(not eval_mode)
     )
     val_loader = DataLoader(
         val_subset, batch_size=batch_size, shuffle=False,
@@ -549,6 +552,7 @@ def pretrain(args: argparse.Namespace) -> None:
 def extract_features(model: BarlowEncoder, loader: DataLoader, device: torch.device):
     """
     Extract frozen 512-dim representations from the ResNet-18 backbone.
+    Handles single tensor batches as well as tuple/list crop batches defensively.
     Returns: (features_np, labels_np)
     """
     model.eval()
@@ -556,13 +560,30 @@ def extract_features(model: BarlowEncoder, loader: DataLoader, device: torch.dev
     all_labels = []
 
     with torch.no_grad():
-        for x, y in loader:
+        for batch in loader:
+            if isinstance(batch, (tuple, list)):
+                if len(batch) >= 2:
+                    x, y = batch[0], batch[1]
+                else:
+                    x, y = batch[0], None
+            else:
+                x, y = batch, None
+
+            if isinstance(x, (tuple, list)):
+                x = x[0]
+
             x = x.to(device, non_blocking=True)
             feats = model.encode(x)
-            all_feats.append(feats.cpu().numpy())
-            all_labels.append(y.numpy())
+            all_feats.append(feats.detach().cpu().numpy())
+            if y is not None:
+                if isinstance(y, torch.Tensor):
+                    all_labels.append(y.detach().cpu().numpy())
+                else:
+                    all_labels.append(np.asarray(y))
 
-    return np.concatenate(all_feats, axis=0), np.concatenate(all_labels, axis=0)
+    X = np.concatenate(all_feats, axis=0) if all_feats else np.empty((0, 512), dtype=np.float32)
+    Y = np.concatenate(all_labels, axis=0) if all_labels else np.empty((0,), dtype=np.int64)
+    return X, Y
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -720,7 +741,8 @@ def evaluate(args: argparse.Namespace) -> None:
         num_workers = getattr(args, "workers", 0),
         batch_size  = 256,
         seed        = seed,
-        include_test = include_test
+        include_test = include_test,
+        eval_mode   = True,
     )
 
     t0 = time.time()

@@ -20,6 +20,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+import numpy as np
 import torch
 
 # Add src to python path
@@ -34,6 +35,9 @@ from barlow_local import (
     barlow_loss_bt,
     barlow_loss_no_rr,
     BarlowEncoder,
+    extract_features,
+    LinearProbe,
+    effective_rank,
 )
 
 
@@ -141,6 +145,58 @@ class TestBarlowTwinsCore(unittest.TestCase):
         finally:
             if tmp_path.exists():
                 tmp_path.unlink()
+
+    def test_extract_features_formats(self):
+        """extract_features must handle both single tensors and multi-crop tuples."""
+        model = BarlowEncoder(dim=64).to(self.device)
+        model.eval()
+
+        # 1. Single tensor loader (evaluation mode)
+        X1 = torch.randn(8, 3, 32, 32)
+        y1 = torch.arange(8)
+        ds1 = torch.utils.data.TensorDataset(X1, y1)
+        loader1 = torch.utils.data.DataLoader(ds1, batch_size=4)
+
+        feats1, labels1 = extract_features(model, loader1, self.device)
+        self.assertEqual(feats1.shape, (8, 512))
+        self.assertEqual(labels1.shape, (8,))
+
+        # 2. Multi-crop tuple loader (defensive fallback)
+        class TwoCropDummyDataset(torch.utils.data.Dataset):
+            def __len__(self):
+                return 8
+            def __getitem__(self, idx):
+                return (torch.randn(3, 32, 32), torch.randn(3, 32, 32)), idx
+
+        loader2 = torch.utils.data.DataLoader(TwoCropDummyDataset(), batch_size=4)
+        feats2, labels2 = extract_features(model, loader2, self.device)
+        self.assertEqual(feats2.shape, (8, 512))
+        self.assertEqual(labels2.shape, (8,))
+
+    def test_linear_probe(self):
+        """LinearProbe must map 512-dim features to 10 classes and backprop correctly."""
+        probe = LinearProbe(in_features=512, num_classes=10).to(self.device)
+        feats = torch.randn(16, 512, device=self.device)
+        logits = probe(feats)
+        self.assertEqual(logits.shape, (16, 10))
+        loss = logits.sum()
+        loss.backward()
+        self.assertIsNotNone(probe.fc.weight.grad)
+
+    def test_effective_rank(self):
+        """effective_rank should correctly reflect intrinsic dimensional span."""
+        # Rank 1 matrix
+        np.random.seed(42)
+        v = np.random.randn(50, 1)
+        w = np.random.randn(1, 10)
+        rank1_mat = v @ w
+        r1 = effective_rank(rank1_mat, threshold=1e-3)
+        self.assertEqual(r1, 1)
+
+        # Full rank matrix
+        full_mat = np.random.randn(50, 10)
+        r_full = effective_rank(full_mat, threshold=1e-3)
+        self.assertEqual(r_full, 10)
 
 
 if __name__ == "__main__":

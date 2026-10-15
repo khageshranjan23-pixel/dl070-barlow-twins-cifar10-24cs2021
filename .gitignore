@@ -42,4 +42,11 @@ bt_env/
 .idea/
 .DS_Store
 Thumbs.db
+# Academic Submission Documents (Retained locally in archive, excluded from GitHub repo tracking)
+report/
+presentation/
+viva/
+notebooks/
+
 DL070_Barlow_Twins_Submission.zip
+
