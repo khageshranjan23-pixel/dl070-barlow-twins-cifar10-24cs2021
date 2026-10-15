@@ -28,5 +28,9 @@
   "final_loss": 4.104125,
   "ckpt_hash": "a2b40775cb7f",
   "encoder_hash": "89a588ee73e4",
-  "skipped_amp_steps": 4
+  "skipped_amp_steps": 4,
+  "checkpoint_sha256": "a2b40775cb7f77edcbf418fa915867d41be843d57599a102e06a0cbbf886e9a6",
+  "encoder_sha256": "89a588ee73e4c3e62226e399796ce08dc4cef0753b137d2d66371525f34820b5",
+  "is_resumed": true,
+  "resumption_notes": "Resumed session from epoch 38 to 49. Total measured runtime across 50 epochs in loss_log.json is 5587.64s (93.1 min); resumed session pretrain_seconds is 1260.28s (21.0 min)."
 }

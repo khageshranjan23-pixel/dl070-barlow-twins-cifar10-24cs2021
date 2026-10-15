@@ -28,5 +28,9 @@
   "final_loss": 46.318832,
   "ckpt_hash": "76d1125e8193",
   "encoder_hash": "8d1536ebc672",
-  "skipped_amp_steps": 16
+  "skipped_amp_steps": 16,
+  "checkpoint_sha256": "76d1125e8193dad4ca1fc58a6315ac328b2c2d98c19e944a4f266a09a1eee603",
+  "encoder_sha256": "8d1536ebc672b182da3b8451f02338fe57ae48f26a91f968b321854a39490812",
+  "is_resumed": false,
+  "resumption_notes": "Continuous 50-epoch run (0 to 49)."
 }
