@@ -1,0 +1,45 @@
+# DL-070 Barlow Twins Submission Git Ignore
+
+# Data & Datasets
+data/
+cifar-10-batches-py/
+*.tar.gz
+
+# Runs & Local Outputs
+runs/
+checkpoints/
+_archive_not_for_submission/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Model Weights & Checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# LaTeX Compilation Artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+
+# Environment & IDE
+.env
+.venv/
+bt_env/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+DL070_Barlow_Twins_Submission.zip
